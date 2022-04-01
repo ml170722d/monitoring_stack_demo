@@ -16,6 +16,10 @@ services:
     image: prom/prometheus:v2.27.1
     ports:
       - 9090:9090
+    volumes:
+      - ./prom/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prom/rules.yml:/etc/prom/rules.yml
+      - prometheus_data:/prometeus
 
   graphana:
     image: grafana/grafana-enterprise:8.2.6
