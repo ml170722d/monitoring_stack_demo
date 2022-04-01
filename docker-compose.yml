@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  yak-server:
+    image: guardiandevelopment/yak-server:1.0.0.SNAPSHOT
+    ports:
+      - 9000:9000
+      - 9001:9001
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 250M
+
+  prom:
+    image: prom/prometheus:v2.27.1
+    ports:
+      - 9090:9090
+
+  graphana:
+    image: grafana/grafana-enterprise:8.2.6
+    ports:
+      - 3000:3000
+
+volumes:
+  # prom metrics storage
+  prometheus_data: {}
+
+networks:
+  default:
+    name: metrics-network
