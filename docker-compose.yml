@@ -25,6 +25,9 @@ services:
     image: grafana/grafana-enterprise:8.2.6
     ports:
       - 3000:3000
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/config.ini:/etc/grafana/config.ini
 
 volumes:
   # prom metrics storage
