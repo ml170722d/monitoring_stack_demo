@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'yak-monitor'
+
+# alert rules
+rule_files:
+  - rules.yml
+
+# targets
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['prom:9090']
+
+  - job_name: 'yak-server'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['yak-server:9001']
